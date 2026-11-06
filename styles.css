@@ -1,5 +1,5 @@
 /* ==========================================================
-   BETH COFFEE — estilos editables
+   JERRY COFFEE — estilos editables
    Paleta: carbón, azul noche, crema y acentos ámbar.
    ========================================================== */
 :root {
@@ -12,37 +12,46 @@
   --line: rgba(255, 255, 255, .13);
   --radius: 22px;
 }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 body {
   margin: 0; color: var(--ink); background: #080b12;
   font-family: "DM Sans", sans-serif; line-height: 1.55;
 }
+
 .background-art {
   position: fixed; inset: 0; z-index: -3;
   background: #080b12 url("assets/fondo-cafeteria-futurista.png") center/cover no-repeat;
   transform: scale(1.02);
 }
+
 .background-shade {
   position: fixed; inset: 0; z-index: -2; pointer-events: none;
   background: linear-gradient(180deg, rgba(5,8,15,.48), rgba(5,8,15,.84) 52%, #080b12 100%),
               radial-gradient(ellipse at 50% 0%, rgba(18,83,125,.22), transparent 55%);
 }
+
 a { color: inherit; }
+
 .site-header {
   width: min(1180px, calc(100% - 44px)); margin: auto; padding: 25px 0;
   display: flex; justify-content: space-between; align-items: center;
 }
+
 .wordmark { display: flex; align-items: baseline; gap: 5px; text-decoration: none; }
 .wordmark-script { font: italic 600 34px "Playfair Display", serif; letter-spacing: -2px; }
 .wordmark-small { font: 600 12px "DM Sans", sans-serif; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+
 .header-link { text-decoration: none; font-size: 13px; color: #f5e9d9; border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px; background: rgba(0,0,0,.18); }
 .header-link span { color: var(--accent); margin-left: 7px; }
+
 .hero {
   width: min(1180px, calc(100% - 44px)); min-height: 590px; margin: 0 auto;
   display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
   padding: 48px 0 90px; position: relative;
 }
+
 .eyebrow { font-size: 11px; letter-spacing: 2.5px; font-weight: 700; color: var(--accent); }
 .eyebrow-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); margin-right: 9px; box-shadow: 0 0 12px var(--accent-2); }
 .hero h1 { font: 500 clamp(58px, 8vw, 104px)/.99 "Playfair Display", serif; letter-spacing: -3px; margin: 24px 0 20px; text-shadow: 0 5px 30px rgba(0,0,0,.24); }
@@ -53,54 +62,226 @@ a { color: inherit; }
 .hero-button span { font-size: 18px; }
 .hero-note { position: absolute; bottom: 35px; display: flex; align-items: center; gap: 12px; color: #b8bbc5; font-size: 10px; letter-spacing: 2px; }
 .hero-note span:first-child { color: var(--accent); font-size: 12px; }
+
 .menu-section {
   width: min(1180px, calc(100% - 44px)); margin: 0 auto 90px; padding: 45px;
   background: rgba(8, 11, 18, .78); border: 1px solid rgba(255,255,255,.13);
   border-radius: 30px; backdrop-filter: blur(18px); box-shadow: 0 25px 100px rgba(0,0,0,.25);
 }
+
 .section-heading { display: flex; justify-content: space-between; gap: 25px; align-items: end; margin-bottom: 30px; }
 .section-heading .eyebrow { margin: 0 0 9px; }
 .section-heading h2 { font: 500 clamp(32px, 4vw, 49px)/1.1 "Playfair Display", serif; margin: 0; letter-spacing: -1px; }
 .section-heading h2 span { color: var(--accent); }
 .section-description { max-width: 260px; color: var(--muted); font-size: 13px; margin: 0 0 4px; }
+
 .menu-tools { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 15px; margin: 0 0 32px; }
 .search-box { display: flex; align-items: center; gap: 10px; min-width: min(100%, 270px); border: 1px solid var(--line); background: rgba(255,255,255,.045); padding: 0 14px; border-radius: 12px; }
 .search-box span { font-size: 24px; color: var(--accent); }
 .search-box input { width: 100%; padding: 12px 0; color: var(--ink); border: 0; outline: 0; background: transparent; font: inherit; font-size: 13px; }
 .search-box input::placeholder { color: #9da0aa; }
+
 .category-filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .filter-button { border: 1px solid var(--line); background: transparent; color: #d7d8dd; padding: 10px 13px; border-radius: 999px; cursor: pointer; font: 500 11px "DM Sans", sans-serif; transition: .2s; }
 .filter-button:hover, .filter-button.active { background: var(--accent); border-color: var(--accent); color: #20160e; }
+
 .menu-group { margin-top: 35px; }
 .group-heading { display: flex; align-items: center; gap: 13px; margin: 0 0 16px; }
 .group-heading h3 { font-size: 12px; letter-spacing: 1.8px; margin: 0; color: var(--accent); text-transform: uppercase; }
 .group-heading::after { content: ""; height: 1px; flex: 1; background: linear-gradient(90deg, rgba(240,185,120,.45), transparent); }
+
 .menu-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
-.menu-card { min-width: 0; overflow: hidden; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,.12); background: var(--panel-light); border-radius: 16px; transition: transform .2s, border-color .2s, background .2s; }
+.menu-card { 
+  min-width: 0; 
+  overflow: hidden; 
+  display: flex; 
+  flex-direction: column; 
+  border: 1px solid rgba(255,255,255,.12); 
+  background: var(--panel-light); 
+  border-radius: 16px; 
+  transition: transform .2s, border-color .2s, background .2s;
+  cursor: pointer;
+  user-select: none;
+}
 .menu-card:hover { transform: translateY(-3px); border-color: rgba(240,185,120,.5); background: rgba(255,255,255,.085); }
+
 .product-image-wrap { position: relative; height: 145px; overflow: hidden; background: linear-gradient(135deg, rgba(40,76,100,.55), rgba(115,75,46,.4)), #141923; }
-.product-image-wrap::after { content: "BETH  ·  COFFEE"; position: absolute; bottom: 10px; left: 12px; font-size: 8px; letter-spacing: 2px; color: rgba(255,255,255,.75); }
+.product-image-wrap::after { content: "JERRY  ·  COFFEE"; position: absolute; bottom: 10px; left: 12px; font-size: 8px; letter-spacing: 2px; color: rgba(255,255,255,.75); }
 .product-image { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .5s; }
 .menu-card:hover .product-image { transform: scale(1.05); }
 .image-placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.68); font: italic 24px "Playfair Display", serif; }
+
 .product-info { padding: 15px 15px 16px; display: flex; flex-direction: column; flex: 1; }
 .product-top { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
 .product-name { margin: 0; font-size: 14px; font-weight: 600; line-height: 1.35; }
 .product-price { flex-shrink: 0; font-size: 13px; font-weight: 700; color: var(--accent); white-space: nowrap; }
 .product-description { margin: 8px 0 0; color: #aeb2bd; font-size: 11px; min-height: 17px; }
+
 .no-results { color: var(--muted); border: 1px dashed var(--line); padding: 24px; text-align: center; border-radius: 14px; }
 .menu-footnote { color: #aeb2bd; font-size: 12px; margin: 32px 0 0; text-align: center; }
+
 .site-footer { width: min(1180px, calc(100% - 44px)); margin: 0 auto; padding: 10px 0 28px; }
 .footer-brand { text-align: center; padding: 12px 0 35px; }
-.beth-footer-logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; font: italic 600 38px/.8 "Playfair Display", serif; color: #f2d5b2; }
-.beth-footer-logo span { font: 600 10px "DM Sans", sans-serif; letter-spacing: 3px; text-transform: uppercase; margin-top: 8px; color: #c4c6ce; }
+.jerry-footer-logo { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; font: italic 600 38px/.8 "Playfair Display", serif; color: #f2d5b2; }
+.jerry-footer-logo span { font: 600 10px "DM Sans", sans-serif; letter-spacing: 3px; text-transform: uppercase; margin-top: 8px; color: #c4c6ce; }
 .footer-brand p { color: #aeb2bd; font-size: 12px; }
 .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 20px; border-top: 1px solid var(--line); color: #9296a2; font-size: 11px; }
+
 .credits-link { display: inline-flex; align-items: center; gap: 11px; color: #d9dbe2; text-decoration: none; line-height: 1.5; transition: opacity .2s; }
 .credits-link:hover { opacity: .75; }
 .credits-link strong { color: var(--accent); }
 .credits-mark { width: 38px; height: 38px; display: grid; place-items: center; position: relative; border-radius: 12px; color: #0b1019; background: linear-gradient(135deg, var(--accent), #8bc8ef); font-weight: 800; font-size: 13px; box-shadow: 0 0 20px rgba(139,200,239,.15); }
 .credits-mark span { position: absolute; right: -4px; top: -7px; font-size: 14px; color: var(--accent); }
+
+/* ==========================================================
+   MODAL / LIGHTBOX DE PRODUCTO
+   ========================================================== */
+.product-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.product-modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 7, 12, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.modal-container {
+  position: relative;
+  z-index: 2;
+  width: min(560px, 100%);
+  max-height: 90vh;
+  background: rgba(14, 19, 29, 0.96);
+  border: 1px solid rgba(240, 185, 120, 0.35);
+  border-radius: 24px;
+  overflow-y: auto;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8);
+  transform: scale(0.92) translateY(12px);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-modal.is-active .modal-container {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(8, 11, 18, 0.75);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: var(--accent);
+  color: #20160e;
+  transform: rotate(90deg);
+}
+
+.modal-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  background: #11151f;
+  overflow: hidden;
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: italic 32px "Playfair Display", serif;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-details {
+  padding: 24px 26px 26px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-category {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.modal-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.modal-name {
+  font: 600 24px/1.2 "Playfair Display", serif;
+  margin: 0;
+  color: var(--ink);
+}
+
+.modal-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.modal-description {
+  color: #cfd2db;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.modal-hint {
+  font-size: 11px;
+  color: #8c909c;
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+
 @media (max-width: 800px) {
   .hero { min-height: 520px; }
   .menu-section { padding: 28px 22px; }
@@ -109,6 +290,7 @@ a { color: inherit; }
   .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .product-image-wrap { height: 130px; }
 }
+
 @media (max-width: 500px) {
   .site-header, .hero, .menu-section, .site-footer { width: calc(100% - 28px); }
   .site-header { padding: 18px 0; }
@@ -121,4 +303,9 @@ a { color: inherit; }
   .category-filters { gap: 6px; }
   .filter-button { padding: 9px 11px; }
   .footer-bottom { align-items: flex-start; flex-direction: column; }
+
+  .modal-image-wrapper { height: 230px; }
+  .modal-name { font-size: 20px; }
+  .modal-price { font-size: 18px; }
+  .modal-details { padding: 18px 20px 22px; }
 }
