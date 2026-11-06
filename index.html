@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Fondo decorativo fijo; cambia la imagen desde styles.css si deseas otra estética. -->
+  <!-- Fondo decorativo fijo -->
   <div class="background-art" aria-hidden="true"></div>
   <div class="background-shade" aria-hidden="true"></div>
 
@@ -41,7 +41,7 @@
         <p class="section-description">Elige tu favorito y haz de hoy un buen día.</p>
       </div>
 
-      <!-- El buscador y los filtros se generan desde menu.js. -->
+      <!-- Buscador y filtros -->
       <div class="menu-tools">
         <label class="search-box">
           <span aria-hidden="true">⌕</span>
@@ -50,7 +50,7 @@
         <div id="category-filters" class="category-filters" aria-label="Filtrar por categoría"></div>
       </div>
 
-      <!-- Las tarjetas se crean automáticamente usando los datos de menu.js. -->
+      <!-- Tarjetas de menú -->
       <div id="menu-groups" class="menu-groups" aria-live="polite"></div>
       <p class="menu-footnote">Precios en MXN. Pregunta por los postres del día.</p>
     </section>
@@ -63,13 +63,33 @@
     </div>
     <div class="footer-bottom">
       <span>© <span id="year"></span> Jerry Coffee</span>
-      <!-- El crédito completo es clicable y lleva a la tarjeta de JerrySystems. -->
       <a class="credits-link" href="https://jerrysystems.github.io/tarjeta/" target="_blank" rel="noopener noreferrer" aria-label="Esta página fue creada por JerrySystems. Contacto 2204757459. Visitar tarjeta de JerrySystems.">
         <span class="credits-mark" aria-hidden="true">JS<span>↗</span></span>
         <span>Esta pag fue creada por <strong>JerrySystems</strong><br>contacto 2204757459</span>
       </a>
     </div>
   </footer>
+
+  <!-- Modal / Vista completa del producto -->
+  <div id="product-modal" class="product-modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container" role="dialog" aria-modal="true" aria-label="Detalle de producto">
+      <button type="button" class="modal-close-btn" aria-label="Cerrar vista">&times;</button>
+      <div class="modal-image-wrapper">
+        <img id="modal-image" class="modal-image" src="" alt="">
+        <div id="modal-placeholder" class="modal-placeholder">Jerry Coffee</div>
+      </div>
+      <div class="modal-details">
+        <span id="modal-category" class="modal-category"></span>
+        <div class="modal-header-row">
+          <h3 id="modal-name" class="modal-name"></h3>
+          <span id="modal-price" class="modal-price"></span>
+        </div>
+        <p id="modal-description" class="modal-description"></p>
+        <span class="modal-hint">Toca en cualquier parte para cerrar</span>
+      </div>
+    </div>
+  </div>
 
   <script src="menu.js"></script>
 </body>
