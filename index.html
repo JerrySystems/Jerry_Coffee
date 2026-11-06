@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0d14">
+  <meta name="description" content="Menú de Jerry Coffee: espresso, bebidas sin café, tonics, yoghurt y frappes.">
+  <title>Jerry Coffee — Menú</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Fondo decorativo fijo; cambia la imagen desde styles.css si deseas otra estética. -->
+  <div class="background-art" aria-hidden="true"></div>
+  <div class="background-shade" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="wordmark" href="#inicio" aria-label="Jerry Coffee, inicio">
+      <span class="wordmark-script">Jerry</span><span class="wordmark-small">coffee</span>
+    </a>
+    <a class="header-link" href="#menu">Explorar menú <span aria-hidden="true">↘</span></a>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> CAFÉ · BEBIDAS · MOMENTOS</div>
+      <h1>Tu pausa,<br><em>tu momento.</em></h1>
+      <p class="hero-copy">Un pequeño ritual para disfrutar sin prisa.</p>
+      <a class="hero-button" href="#menu">Descubre el menú <span aria-hidden="true">↓</span></a>
+      <div class="hero-note"><span>01</span><span>HECHO PARA DISFRUTAR</span></div>
+    </section>
+
+    <section id="menu" class="menu-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">NUESTRA CARTA</p>
+          <h2>Algo rico te espera<span>.</span></h2>
+        </div>
+        <p class="section-description">Elige tu favorito y haz de hoy un buen día.</p>
+      </div>
+
+      <!-- El buscador y los filtros se generan desde menu.js. -->
+      <div class="menu-tools">
+        <label class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="menu-search" type="search" placeholder="Buscar una bebida..." aria-label="Buscar una bebida">
+        </label>
+        <div id="category-filters" class="category-filters" aria-label="Filtrar por categoría"></div>
+      </div>
+
+      <!-- Las tarjetas se crean automáticamente usando los datos de menu.js. -->
+      <div id="menu-groups" class="menu-groups" aria-live="polite"></div>
+      <p class="menu-footnote">Precios en MXN. Pregunta por los postres del día.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <a class="jerry-footer-logo" href="#inicio" aria-label="Volver al inicio">Jerry <span>coffee</span></a>
+      <p>Un sorbo, una pausa, un buen momento.</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Jerry Coffee</span>
+      <!-- El crédito completo es clicable y lleva a la tarjeta de JerrySystems. -->
+      <a class="credits-link" href="https://jerrysystems.github.io/tarjeta/" target="_blank" rel="noopener noreferrer" aria-label="Esta página fue creada por JerrySystems. Contacto 2204757459. Visitar tarjeta de JerrySystems.">
+        <span class="credits-mark" aria-hidden="true">JS<span>↗</span></span>
+        <span>Esta pag fue creada por <strong>JerrySystems</strong><br>contacto 2204757459</span>
+      </a>
+    </div>
+  </footer>
+
+  <script src="menu.js"></script>
+</body>
+</html>

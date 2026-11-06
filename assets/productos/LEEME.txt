@@ -1,0 +1,1 @@
+Sube aquí las fotos de cada producto. Las rutas y nombres esperados están en menu.js.
