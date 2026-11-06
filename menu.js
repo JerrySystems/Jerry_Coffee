@@ -41,7 +41,7 @@ const MENU = [
   { categoria: "Non-coffee", nombre: "Chai", precio: 65, imagen: "assets/productos/chai.jpg", descripcion: "" },
   { categoria: "Non-coffee", nombre: "Horchata", precio: 65, imagen: "assets/productos/horchata.jpg", descripcion: "" },
 
-  // FRIOSI / FRAPPES (nombre de sección adaptado visualmente; nombres de productos y precios conservados)
+  // FRIOSI / FRAPPES
   { categoria: "Friosi / Frappes", nombre: "Taro / frappe.", precio: 75, imagen: "assets/productos/taro-frappe.jpg", descripcion: "" },
   { categoria: "Friosi / Frappes", nombre: "Dirty Chai.", precio: 75, imagen: "assets/productos/dirty-chai-frappe.jpg", descripcion: "" },
   { categoria: "Friosi / Frappes", nombre: "Chocolate", precio: 70, imagen: "assets/productos/chocolate-frappe.jpg", descripcion: "" },
@@ -57,7 +57,6 @@ const MENU = [
   { categoria: "Friosi / Frappes", nombre: "Matcha mango", precio: 75, imagen: "assets/productos/matcha-mango.jpg", descripcion: "" }
 ];
 
-// El orden de categorías se define aquí; puedes cambiarlo sin editar el HTML.
 const CATEGORY_ORDER = ["Espresso base", "Non-coffee", "Tonic's", "Yoghurt base", "Friosi / Frappes"];
 let activeCategory = "Todas";
 let searchTerm = "";
@@ -67,8 +66,78 @@ const groupsEl = document.getElementById("menu-groups");
 const filtersEl = document.getElementById("category-filters");
 const searchEl = document.getElementById("menu-search");
 
-// Crea los botones de filtro usando las categorías que existen en MENU.
+// Referencias del modal
+const modal = document.getElementById("product-modal");
+const modalImg = document.getElementById("modal-image");
+const modalPlaceholder = document.getElementById("modal-placeholder");
+const modalCategory = document.getElementById("modal-category");
+const modalName = document.getElementById("modal-name");
+const modalPrice = document.getElementById("modal-price");
+const modalDesc = document.getElementById("modal-description");
+
+// Abrir modal con la información completa
+function openModal(item) {
+  if (!modal) return;
+
+  if (modalCategory) modalCategory.textContent = item.categoria;
+  if (modalName) modalName.textContent = item.nombre;
+  if (modalPrice) modalPrice.textContent = money(item.precio);
+  if (modalDesc) {
+    modalDesc.textContent = item.descripcion || "Preparado al momento con ingredientes seleccionados de Jerry Coffee.";
+  }
+
+  if (modalImg && modalPlaceholder) {
+    if (item.imagen) {
+      modalImg.src = item.imagen;
+      modalImg.alt = item.nombre;
+      modalImg.style.display = "block";
+      modalPlaceholder.style.display = "none";
+      modalImg.onerror = () => {
+        modalImg.style.display = "none";
+        modalPlaceholder.style.display = "grid";
+      };
+    } else {
+      modalImg.style.display = "none";
+      modalPlaceholder.style.display = "grid";
+    }
+  }
+
+  modal.classList.add("is-active");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+// Cerrar modal y regresar
+function closeModal() {
+  if (!modal) return;
+  modal.classList.remove("is-active");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+// Listeners de cierre
+if (modal) {
+  const closeBtn = modal.querySelector(".modal-close-btn");
+  const backdrop = modal.querySelector(".modal-backdrop");
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (backdrop) backdrop.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal || e.target.classList.contains("modal-hint")) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-active")) {
+      closeModal();
+    }
+  });
+}
+
 function renderFilters() {
+  if (!filtersEl) return;
   const categories = ["Todas", ...CATEGORY_ORDER.filter(category => MENU.some(item => item.categoria === category))];
   filtersEl.innerHTML = "";
   categories.forEach(category => {
@@ -86,10 +155,20 @@ function renderFilters() {
   });
 }
 
-// Crea una tarjeta por bebida. Si falta la foto, muestra un recuadro de reserva.
 function createCard(item) {
   const card = document.createElement("article");
   card.className = "menu-card";
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("role", "button");
+  card.setAttribute("aria-label", `Ver ${item.nombre} en tamaño completo`);
+
+  card.addEventListener("click", () => openModal(item));
+  card.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openModal(item);
+    }
+  });
 
   const imageWrap = document.createElement("div");
   imageWrap.className = "product-image-wrap";
@@ -133,8 +212,8 @@ function createCard(item) {
   return card;
 }
 
-// Filtra y dibuja las bebidas por categoría y texto buscado.
 function renderMenu() {
+  if (!groupsEl) return;
   const filtered = MENU.filter(item => {
     const matchesCategory = activeCategory === "Todas" || item.categoria === activeCategory;
     const matchesSearch = (item.nombre + " " + item.categoria).toLocaleLowerCase("es").includes(searchTerm);
@@ -169,10 +248,17 @@ function renderMenu() {
   });
 }
 
-searchEl.addEventListener("input", event => {
-  searchTerm = event.target.value.trim().toLocaleLowerCase("es");
-  renderMenu();
-});
-document.getElementById("year").textContent = new Date().getFullYear();
+if (searchEl) {
+  searchEl.addEventListener("input", event => {
+    searchTerm = event.target.value.trim().toLocaleLowerCase("es");
+    renderMenu();
+  });
+}
+
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
+
 renderFilters();
 renderMenu();
